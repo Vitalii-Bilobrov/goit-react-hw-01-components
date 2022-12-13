@@ -1,15 +1,8 @@
 import PropTypes from 'prop-types';
 import css from './Statistics.module.css';
+import { getRandomColor } from '..//../utils/getRandomColor';
 
 export const Statistics = ({ title, stats }) => {
-  function getRandomColor() {
-    var letters = '0123456789ABCDEF';
-    var color = '#';
-    for (var i = 0; i < 6; i++) {
-      color += letters[Math.floor(Math.random() * 16)];
-    }
-    return color;
-  }
   return (
     <section className={css.statistics}>
       {title && <h2 className={css.title}>{title}</h2>}
@@ -30,6 +23,10 @@ export const Statistics = ({ title, stats }) => {
 };
 
 Statistics.propTypes = {
-  title: PropTypes.string.isRequired,
-  stats: PropTypes.array.isRequired,
+  title: PropTypes.string,
+  stats: PropTypes.arrayOf({
+    id: PropTypes.string.isRequired,
+    label: PropTypes.string.isRequired,
+    percentage: PropTypes.string.isRequired,
+  }).isRequired,
 };
